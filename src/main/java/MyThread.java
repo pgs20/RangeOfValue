@@ -1,4 +1,6 @@
-public class MyThread extends Thread {
+import java.util.concurrent.Callable;
+
+public class MyThread implements Callable<Integer> {
     private String text;
 
     public MyThread(String text) {
@@ -6,7 +8,7 @@ public class MyThread extends Thread {
     }
 
     @Override
-    public void run() {
+    public Integer call() {
         int maxSize = 0;
         for (int i = 0; i < text.length(); i++) {
             for (int j = 0; j < text.length(); j++) {
@@ -26,5 +28,6 @@ public class MyThread extends Thread {
             }
         }
         System.out.println(text.substring(0, 100) + " -> " + maxSize);
+        return maxSize;
     }
 }
